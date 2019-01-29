@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class='row'>
+
+    <div class='col-sm-12'>
+        <h1>Categories</h1>
+    </div>
+
+    <div class='col-sm-3'>
+    <div class="list-group">
+
+    {% for item in object_list %}
+        <a href="{{ item.get_absolute_url }}" class="list-group-item">
+                {{ item.title }}
+
+                {% if item.courses_length > 0 %}
+                <span class="badge badge-primary badge-pill">{{ item.courses_length }} Course{% if courses_length > 1 %}s{% endif %}</span>
+                {% endif %}
+
+
+                {% if item.primary_category.all.exists %}
+                <span class="badge badge-default badge-pill">{{ item.primary_category.all.count }} Featured</span>
+                {% endif %}
+        </a>
+        {% if forloop.counter|divisibleby:5 %}
+                </div></div><div class="col-sm-3"><div class="list-group">
+
+        {% endif %}
+    {% endfor %}
+    </div>
+    </div>
+
+
+
+
+</div>
+
+
+{% endblock %}

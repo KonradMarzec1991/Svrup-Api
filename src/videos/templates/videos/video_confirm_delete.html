@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-1">
+
+        <form method="post">
+        {% csrf_token %}
+            <p>Are you sure you want to delete <b>{{ object.title }}</b>?</p>
+
+            <input type="submit" value="Yes" class="btn btn-default">
+            <a href="{{ object.get_absolute_url }}">Cancel</a>
+        </form>
+
+        </div>
+    </div>
+
+{% endblock %}

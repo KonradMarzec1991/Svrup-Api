@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Detail | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+            {% include 'videos/snippets/video_search_form.html' with request=request %}
+                <br>
+
+            <div class="row">
+                <div class="col-sm-12">
+            {% if object.image %}
+                <img src="{{ object.image.url }}" class="img-responsive">
+            {% endif %}
+            <hi>{{ object.title }}</hi>
+
+            {{ object.description|linebreaks }}
+
+            {% if not object.is_owner %}
+                <a href="{{ object.get_purchase_url }}">Purchase</a>
+                {{ object.display_price }}
+            {% endif %}
+                <br>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Lecture</h3>
+                    {% for item in object.lecture_set.all %}
+                        <div class="list-group">
+                            <a {% if object.is_owner or item.free %} href="{{ item.get_absolute_url }}" {% endif %}
+                               class="list-group-item lead">{{ item.title }} {% if item.free %}<small>Free Preview</small>{% endif %}</a>
+                        </div>
+
+                        {% empty %}
+                        <p class="lead">Lectures coming soon</p>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+{% endblock %}

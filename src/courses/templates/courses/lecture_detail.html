@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load render_video %}
+
+{% block title %}Detail | {{ block.super }}{% endblock title %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+            {% include 'videos/snippets/../../../videos/templates/videos/snippets/video_search_form.html' with request=request %}
+
+            {{ object.title }}
+            {% render_video object.video %}
+            {{ object.updated }}
+            {{ object.timestamp }}
+
+            </div>
+        </div>
+
+{% endblock %}
