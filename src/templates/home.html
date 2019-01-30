@@ -3,5 +3,13 @@
 {% block title %}Home | {{ block.super }}{% endblock title %}
 
 {% block content %}
-    <h2>This is home!</h2>
+
+       <div class='row'>
+        {% for item in qs %}
+            <div class='col-sm-2'>
+            {% include 'courses/snippets/course_thumbnail_display.html' with course=item %}
+            </div>
+        {% endfor %}
+        </div>
+
 {% endblock %}

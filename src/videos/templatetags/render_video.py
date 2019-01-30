@@ -1,11 +1,9 @@
 from django import template
-
+from videos.models import Video
 register = template.Library()
 
-from videos.models import Video
 
-
-@register.inclusion_tag('videos/snippets/../templates/videos/snippets/render_video.html')
+@register.inclusion_tag('videos/snippets/render_video.html')
 def render_video(video_obj):
     video = None
     if isinstance(video_obj, Video):

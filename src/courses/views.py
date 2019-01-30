@@ -50,7 +50,7 @@ class LectureDetailView(View):
         }
 
         if not course_.is_owner and not obj.free:
-            return render(request, "courses/templates/courses/must_purchase.html", {'object': course_})
+            return render(request, "courses/must_purchase.html", {'object': course_})
 
         return render(request, self.template_name, context)
 

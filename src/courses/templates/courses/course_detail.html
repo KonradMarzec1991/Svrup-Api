@@ -5,11 +5,13 @@
 
 {% block content %}
 
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
+            <ol class="breadcrumb">
+              <li><a href="{% url 'category:list' %}">Courses</a></li>
+              <li class="active">{{ object.title }}</li>
+            </ol>
 
-            {% include 'videos/snippets/video_search_form.html' with request=request %}
-                <br>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3"><br>
 
             <div class="row">
                 <div class="col-sm-12">

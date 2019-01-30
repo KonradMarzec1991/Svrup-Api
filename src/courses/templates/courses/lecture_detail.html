@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
-{% load render_video %}
+{% load search_form %}
 
 {% block title %}Detail | {{ block.super }}{% endblock title %}
 
 {% block content %}
 
+    <ol class="breadcrumb">
+      <li><a href="{% url 'category:list' %}">Courses</a></li>
+      <li><a href="{{ object.course.get_absolute_url }}">{{ object.course.title }}</a></li>
+      <li class="active">{{ object.title }}</li>
+    </ol>
+
+
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
 
-            {% include 'videos/snippets/../../../videos/templates/videos/snippets/video_search_form.html' with request=request %}
-
-            {{ object.title }}
+            <h1>{{ object.title }}</h1><br>
             {% render_video object.video %}
-            {{ object.updated }}
-            {{ object.timestamp }}
+            <p>{{ object.description }}</p>
+                <p>{{ object.updated }}</p>
 
             </div>
         </div>

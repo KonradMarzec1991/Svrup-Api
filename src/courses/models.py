@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 
@@ -45,6 +45,9 @@ class CourseQuerySet(models.query.QuerySet):
 
     def lectures(self):
         return self.prefetch_related('lecture_set')
+
+    def featured(self):
+        return self.filter(Q(category__slug='featured') | Q(secondary__slug='featured'))
 
     def owned(self, user):
         if user.is_authenticated():
